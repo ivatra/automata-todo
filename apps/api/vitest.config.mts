@@ -6,7 +6,6 @@ export default defineConfig({
     include: ['**/*.test.ts'],
     globals: true,
     root: './',
-    setupFiles: ['dotenv/config', './src/__tests__/setup-e2e.ts'],
     dir: 'src',
   },
   plugins: [tsConfigPaths()],
