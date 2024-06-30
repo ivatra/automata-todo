@@ -5,6 +5,7 @@ type TDrizzleTask = {
   title: string
   createdAt: string
   completedAt?: string | null
+  client_id?: string | null
 }
 
 export abstract class DrizzleTaskMapper {
@@ -14,6 +15,7 @@ export abstract class DrizzleTaskMapper {
       title: raw.title,
       createdAt: raw.createdAt,
       completedAt: raw.completedAt,
+      client_id: raw.client_id ?? '',
     })
   }
 
@@ -23,6 +25,7 @@ export abstract class DrizzleTaskMapper {
       title: task.title,
       createdAt: task.createdAt.toISOString(),
       completedAt: task.completedAt?.toISOString(),
+      client_id: task.client_id,
     }
   }
 }

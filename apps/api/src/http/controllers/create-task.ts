@@ -18,7 +18,9 @@ export const createTaskController = async (app: FastifyInstance) => {
           tags: ['Tasks'],
           summary: 'Create a new Task',
           body: z.object({
-            title: z.string().min(3),
+            // title must be strictly longer than 3 and strictly shorter than 50
+            title: z.string().min(4).max(49),
+            client_id: z.string(),
           }),
           response: {
             201: z.null(),
@@ -32,7 +34,7 @@ export const createTaskController = async (app: FastifyInstance) => {
         },
       },
       async (request, reply) => {
-        const { title } = request.body
+        const { title, client_id } = request.body
 
         const db = await Db.getInstance()
         const taskRepo = new DrizzleTaskRepository(db)
@@ -40,6 +42,7 @@ export const createTaskController = async (app: FastifyInstance) => {
 
         const result = await createTask.execute({
           title,
+          client_id,
         })
 
         if (result.isLeft()) {

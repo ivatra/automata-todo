@@ -55,7 +55,7 @@ export const TaskItem = ({ task }: TaskItemProps) => {
       <p className="flex-grow text-base font-medium text-muted-foreground">
         {task.title}
       </p>
-      <p className="text-sm text-muted-foreground">{task.createdAt}</p>
+      <p className="text-sm text-muted-foreground">{new Date(task.createdAt).toLocaleDateString()}</p>
       <Button variant="ghost" onClick={() => handleDeleteTask(task.id)}>
         <TrashIcon className="size-4" />
       </Button>

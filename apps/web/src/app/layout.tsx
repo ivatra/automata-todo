@@ -1,16 +1,17 @@
-import '../lib/dayjs'
-import '../styles/globals.css'
+import "../lib/dayjs";
+import "../styles/globals.css";
 
-import { GeistSans } from 'geist/font/sans'
-import { ThemeProvider } from 'next-themes'
-import type { ReactNode } from 'react'
+import { GeistSans } from "geist/font/sans";
+import { ThemeProvider } from "next-themes";
+import type { ReactNode } from "react";
+import SessionProviderWrapper from "../components/session-provider-wrapper";
 
 export const metadata = {
-  title: 'UTTER Todo',
+  title: "UTTER Todo",
   description:
-    'From nothing to automated CI/CD - simple app for CI/CD automation for rcmonteiro portfolio',
-  icons: [{ rel: 'icon', url: '/favicon.ico' }],
-}
+    "From nothing to automated CI/CD - simple app for CI/CD automation for rcmonteiro portfolio",
+  icons: [{ rel: "icon", url: "/favicon.ico" }],
+};
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
@@ -25,9 +26,10 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           defaultTheme="dark"
           disableTransitionOnChange
         >
-          {children}
+          {/* {children} */}
+          <SessionProviderWrapper>{children}</SessionProviderWrapper>
         </ThemeProvider>
       </body>
     </html>
-  )
+  );
 }

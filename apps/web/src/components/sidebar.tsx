@@ -1,5 +1,8 @@
+"use client"
+
 import { LogOut } from 'lucide-react'
 import Link from 'next/link'
+import { signOut } from 'next-auth/react'
 
 import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar'
 import { Button } from './ui/button'
@@ -44,7 +47,11 @@ const Sidebar = ({ currentStatus }: SidebarProps) => {
           <Link href="tasks?status=COMPLETED">Completed</Link>
         </Button>
         <Separator />
-        <Button variant="outline" className="mt-4">
+        <Button
+          variant="outline"
+          className="mt-4"
+          onClick={() => signOut({ callbackUrl: '/login' })}
+        >
           <LogOut />
           Log-out
         </Button>

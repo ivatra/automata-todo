@@ -9,8 +9,11 @@
     "test": "vitest run --dir ./src/domain/use-cases --config ./vitest.config.mts",
     "test:e2e": "vitest run --dir ./src/http/controllers --no-file-parallelism --config ./vitest.e2e.config.mts",
     "test:watch": "vitest --dir ./src/http/controllers --no-file-parallelism",
-    "build": "tsup", 
-    "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\""
+    "build": "tsup",
+    "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
+    "db:generate": "drizzle-kit generate",
+    "db:push": "drizzle-kit push",
+    "db:migrate": "tsx src/http/database/migrate.ts"
   },
   "dependencies": {
     "@fastify/cors": "^9.0.1",

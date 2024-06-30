@@ -4,7 +4,7 @@ import type { TaskRepository, TStatus } from 'src/domain/repositories/task-repo'
 
 import { InvalidTitleError } from './_errors/invalid-title-error'
 
-type FetchTasksRequest = { status: TStatus }
+type FetchTasksRequest = { status: TStatus; client_id: string }
 
 type FetchTasksResponse = Either<
   InvalidTitleError,
@@ -16,8 +16,8 @@ type FetchTasksResponse = Either<
 export class FetchTasksUseCase {
   constructor(private readonly taskRepository: TaskRepository) {}
 
-  async execute({ status }: FetchTasksRequest): Promise<FetchTasksResponse> {
-    const tasks = await this.taskRepository.findManyByStatus(status)
+  async execute({ status, client_id }: FetchTasksRequest): Promise<FetchTasksResponse> {
+    const tasks = await this.taskRepository.findManyByStatus(status, client_id)
     return right({ tasks })
   }
 }
