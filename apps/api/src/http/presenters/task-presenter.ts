@@ -7,6 +7,7 @@ export abstract class TaskPresenter {
       title: task.title,
       createdAt: task.createdAt.toISOString(),
       completedAt: task.completedAt ? task.completedAt.toISOString() : null,
+      client_id: task.client_id.toString(),
     }
   }
 }

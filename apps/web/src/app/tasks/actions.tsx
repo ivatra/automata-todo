@@ -1,9 +1,11 @@
-'use server'
+"use server"
 
 import { HTTPError } from 'ky'
 import { z } from 'zod'
 
 import { createTask } from '../../http/create-task'
+import { getServerSession } from 'next-auth'
+import { authOptions } from '../api/auth/[...nextauth]/route'
 import { deleteTask } from '../../http/delete-task'
 import { toggleTaskCompleted } from '../../http/toggle-task-completed'
 
@@ -60,7 +62,15 @@ export const createTaskAction = async (data: FormData) => {
   const { title } = formDataValidationResult.data
 
   try {
-    await createTask({ title })
+    // try to get client_id from server session
+    const session = await getServerSession(authOptions as any)
+  const client_id = (session as any)?.user?.client_id
+
+    if (!client_id) {
+      throw new Error('Missing client_id in session')
+    }
+
+    await createTask({ title, client_id })
     return true
   } catch (error) {
     if (error instanceof HTTPError) {

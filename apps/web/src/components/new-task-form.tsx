@@ -3,21 +3,31 @@
 import { Plus } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 import { useTransition } from 'react'
-
-import { createTaskAction } from '../app/tasks/actions'
+import { useSession } from 'next-auth/react'
+import { createTask } from '../http/create-task'
 import { Button } from './ui/button'
 import { Input } from './ui/input'
 
 const NewTaskForm = () => {
   const [isPending, startTransition] = useTransition()
   const router = useRouter()
+  const { data: session } = useSession()
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     const formData = new FormData(e.currentTarget)
+    const title = formData.get('title') as string
     e.currentTarget.reset()
+    
+    if (!session?.user) {
+      throw new Error('Not authenticated')
+    }
+
     startTransition(async () => {
-      await createTaskAction(formData)
+      await createTask({
+        title,
+        client_id: (session.user as any).client_id
+      })
       router.refresh()
     })
   }
@@ -29,6 +39,9 @@ const NewTaskForm = () => {
           type="text"
           name="title"
           placeholder="Create a new task"
+          required
+          minLength={4}
+          maxLength={49}
           className="focus-visible: rounded-none border-0 outline-none focus-visible:ring-0"
         />
         <Button type="submit" disabled={isPending}>
