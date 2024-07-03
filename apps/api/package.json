@@ -1,5 +1,5 @@
 {
-  "name": "@utter-todo/api",
+  "name": "@automata-todo/api",
   "version": "0.0.1",
   "private": true,
   "license": "MIT",
@@ -34,9 +34,9 @@
     "@types/node": "^20.3.1",
     "@types/pg": "^8.11.6",
     "@types/supertest": "^6.0.0",
-    "@utter-todo/eslint-config": "workspace:*",
-    "@utter-todo/prettier": "workspace:*",
-    "@utter-todo/typescript-config": "workspace:*",
+    "@automata-todo/eslint-config": "workspace:*",
+    "@automata-todo/prettier": "workspace:*",
+    "@automata-todo/typescript-config": "workspace:*",
     "dotenv": "^16.4.5",
     "drizzle-kit": "^0.22.7",
     "supertest": "^6.3.3",
@@ -49,10 +49,10 @@
     "vite-tsconfig-paths": "^4.3.2",
     "vitest": "^1.6.0"
   },
-  "prettier": "@utter-todo/prettier",
+  "prettier": "@automata-todo/prettier",
   "eslintConfig": {
     "extends": [
-      "@utter-todo/eslint-config/node"
+      "@automata-todo/eslint-config/node"
     ]
   }
 }

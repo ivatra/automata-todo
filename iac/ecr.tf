@@ -1,5 +1,5 @@
-resource "aws_ecr_repository" "utter_todo_api" {
-  name = "utter_todo_api"
+resource "aws_ecr_repository" "automata_todo_api" {
+  name = "automata_todo_api"
 
   image_tag_mutability = "MUTABLE"
 
@@ -12,8 +12,8 @@ resource "aws_ecr_repository" "utter_todo_api" {
   }
 }
 
-resource "aws_ecr_repository" "utter_todo_web" {
-  name = "utter_todo_web"
+resource "aws_ecr_repository" "automata_todo_web" {
+  name = "automata_todo_web"
 
   image_tag_mutability = "MUTABLE"
 

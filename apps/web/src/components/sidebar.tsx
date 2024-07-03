@@ -2,7 +2,7 @@
 
 import { LogOut } from 'lucide-react'
 import Link from 'next/link'
-import { signOut } from 'next-auth/react'
+import { signOut, useSession } from 'next-auth/react'
 
 import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar'
 import { Button } from './ui/button'
@@ -13,12 +13,18 @@ type SidebarProps = {
 }
 
 const Sidebar = ({ currentStatus }: SidebarProps) => {
+  const { data: session } = useSession()
+  const initials = session?.user?.name
+    ? session.user.name.split(' ').map(n => n[0]).slice(0, 2).join('').toUpperCase()
+    : 'US'
+
   return (
     <aside className="flex flex-col gap-4">
       <Avatar className="mx-auto size-16">
-        <AvatarImage src="https://github.com/rcmonteiro.png" />
+        {/* show GitHub avatar when available, otherwise render initials */}
+        <AvatarImage src={session?.user?.image ?? undefined} />
         <AvatarFallback className="bg-emerald-600 text-white">
-          US
+          {initials}
         </AvatarFallback>
       </Avatar>
       <nav className="flex flex-col gap-2">

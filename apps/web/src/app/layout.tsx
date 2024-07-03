@@ -7,7 +7,7 @@ import type { ReactNode } from "react";
 import SessionProviderWrapper from "../components/session-provider-wrapper";
 
 export const metadata = {
-  title: "UTTER Todo",
+  title: "Automata Todo",
   description:
     "From nothing to automated CI/CD - simple app for CI/CD automation for rcmonteiro portfolio",
   icons: [{ rel: "icon", url: "/favicon.ico" }],

@@ -7,6 +7,6 @@ describe('Header - unit tests', () => {
     const { getByText, getByRole } = render(<Header />)
     expect(getByRole('heading', { level: 1 })).toBeInTheDocument()
     expect(getByRole('button')).toBeInTheDocument()
-    expect(getByText('Utter Todo')).toBeInTheDocument()
+    expect(getByText('AutomataTodo')).toBeInTheDocument()
   })
 })

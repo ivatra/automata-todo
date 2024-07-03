@@ -1,4 +1,4 @@
-# Utter Todo — Full-stack CI/CD Example
+# AutomataTodo — Full-stack CI/CD Example
 
 This repository is a full-stack example app (a TODO app) built as a Turborepo monorepo. It demonstrates:
 
@@ -62,7 +62,7 @@ Clone and install:
 
 ```bash
 git clone <this-repo>
-cd utter-todo
+cd automata-todo
 pnpm install
 ```
 
@@ -71,7 +71,7 @@ pnpm install
 Copy environment examples into each app and edit values:
 
 - API: `apps/api/.env` (example file present in repo). Important variables:
-  - `DB_URL` — Postgres connection string used by the API (e.g. postgresql://docker:docker@localhost:5432/utter-todo)
+  - `DB_URL` — Postgres connection string used by the API (e.g. postgresql://docker:docker@localhost:5432/automata-todo)
   - `DB_TEST_URL` — test database connection (optional)
   - `API_PORT` — default 4000
   - `JWT_SECRET` — used by API auth utilities if enabled
@@ -115,7 +115,7 @@ pnpm db:push
 Inspect the database:
 
 ```bash
-docker exec -it utter-todo-db psql -U docker -d utter-todo
+docker exec -it automata-todo-db psql -U docker -d automata-todo
 -- inside psql shell:
 \dt                 -- list tables
 SELECT COUNT(*) FROM "Tasks";
@@ -137,14 +137,18 @@ This runs the web (Next.js) and API simultaneously. By default:
 - Web: http://localhost:3000
 - API: http://localhost:4000
 
+Screenshot — main overview
+
+![Main overview — /tasks page](main_overview.png)
+
 If you prefer to run a single package:
 
 ```bash
 # run only the API
-pnpm --filter @utter-todo/api dev
+pnpm --filter @automata-todo/api dev
 
 # run only the web
-pnpm --filter @utter-todo/web dev
+pnpm --filter @automata-todo/web dev
 ```
 
 ### Build & production

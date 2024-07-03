@@ -1,5 +1,5 @@
 {
-  "name": "@utter-todo/prettier",
+  "name": "@automata-todo/prettier",
   "version": "0.0.1",
   "main": "index.mjs",
   "private": true,

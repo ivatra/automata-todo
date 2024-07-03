@@ -26,7 +26,7 @@ jobs:
         env:
           POSTGRESQL_USERNAME: docker
           POSTGRESQL_PASSWORD: docker
-          POSTGRESQL_DATABASE: utter-todo
+          POSTGRESQL_DATABASE: automata-todo
 
     steps:
       - name: Checkout
@@ -69,8 +69,8 @@ jobs:
         env:
           JWT_SECRET: secret
           API_PORT: 4000
-          DB_URL: postgresql://docker:docker@localhost:5432/utter-todo?schema=public
-          DB_TEST_URL: postgresql://docker:docker@localhost:5432/utter-todo?schema=public
+          DB_URL: postgresql://docker:docker@localhost:5432/automata-todo?schema=public
+          DB_TEST_URL: postgresql://docker:docker@localhost:5432/automata-todo?schema=public
 
       - name: Run API e2e tests (Vitest)
         run: |
@@ -80,8 +80,8 @@ jobs:
         env:          
           JWT_SECRET: secret
           API_PORT: 4000
-          DB_URL: postgresql://docker:docker@localhost:5432/utter-todo?schema=public
-          DB_TEST_URL: postgresql://docker:docker@localhost:5432/utter-todo?schema=public
+          DB_URL: postgresql://docker:docker@localhost:5432/automata-todo?schema=public
+          DB_TEST_URL: postgresql://docker:docker@localhost:5432/automata-todo?schema=public
 
       - name: Run WEB Unit Tests (Vitest)
         run: |
@@ -134,10 +134,10 @@ jobs:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
           TAG: ${{ steps.create_tag.outputs.sha }}
         run: | 
-          docker build -f Dockerfile.api -t $ECR_REGISTRY/utter_todo_api:$TAG .
-          docker tag $ECR_REGISTRY/utter_todo_api:$TAG $ECR_REGISTRY/utter_todo_api:latest
-          docker push --all-tags $ECR_REGISTRY/utter_todo_api
-          IMAGE=$(echo $ECR_REGISTRY/utter_todo_api:$TAG)
+          docker build -f Dockerfile.api -t $ECR_REGISTRY/automata_todo_api:$TAG .
+          docker tag $ECR_REGISTRY/automata_todo_api:$TAG $ECR_REGISTRY/automata_todo_api:latest
+          docker push --all-tags $ECR_REGISTRY/automata_todo_api
+          IMAGE=$(echo $ECR_REGISTRY/automata_todo_api:$TAG)
           echo "image=$IMAGE" >> $GITHUB_OUTPUT
 
       - name: Build and Push Docker WEB Image
@@ -146,17 +146,17 @@ jobs:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
           TAG: ${{ steps.create_tag.outputs.sha }}
         run: | 
-          docker build -f Dockerfile.web -t $ECR_REGISTRY/utter_todo_web:$TAG .
-          docker tag $ECR_REGISTRY/utter_todo_web:$TAG $ECR_REGISTRY/utter_todo_web:latest
-          docker push --all-tags $ECR_REGISTRY/utter_todo_web
-          IMAGE=$(echo $ECR_REGISTRY/utter_todo_web:$TAG)
+          docker build -f Dockerfile.web -t $ECR_REGISTRY/automata_todo_web:$TAG .
+          docker tag $ECR_REGISTRY/automata_todo_web:$TAG $ECR_REGISTRY/automata_todo_web:latest
+          docker push --all-tags $ECR_REGISTRY/automata_todo_web
+          IMAGE=$(echo $ECR_REGISTRY/automata_todo_web:$TAG)
           echo "image=$IMAGE" >> $GITHUB_OUTPUT
 
       - name: Deploy API to AWS App Runner
         id: deploy-api-app-runner
         uses: awslabs/amazon-app-runner-deploy@main
         with: 
-          service: utter_todo_api
+          service: automata_todo_api
           image: ${{ steps.build-docker-api-image.outputs.image }}
           access-role-arn: ${{ secrets.APP_RUNNER_ROLE }}
           region: us-east-2
@@ -168,7 +168,7 @@ jobs:
         id: deploy-web-app-runner
         uses: awslabs/amazon-app-runner-deploy@main
         with: 
-          service: utter_todo_web
+          service: automata_todo_web
           image: ${{ steps.build-docker-web-image.outputs.image }}
           access-role-arn: ${{ secrets.APP_RUNNER_ROLE }}
           region: us-east-2

@@ -28,7 +28,7 @@ app.setErrorHandler(errorHandler)
 app.register(fastifySwagger, {
   openapi: {
     info: {
-      title: 'API RESTFul - Utter Todo',
+      title: 'API RESTFul - AutomataTodo',
       description: '...',
       version: '1.0.0',
     },

@@ -1,5 +1,5 @@
 {
-  "name": "@utter-todo/web",
+  "name": "@automata-todo/web",
   "version": "0.1.0",
   "private": true,
   "type": "module",
@@ -47,9 +47,9 @@
     "@types/node": "^20.11.20",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.2.19",
-    "@utter-todo/eslint-config": "workspace:*",
-    "@utter-todo/prettier": "workspace:*",
-    "@utter-todo/typescript-config": "workspace:*",
+    "@automata-todo/eslint-config": "workspace:*",
+    "@automata-todo/prettier": "workspace:*",
+    "@automata-todo/typescript-config": "workspace:*",
     "@vitejs/plugin-react": "^4.3.1",
     "dotenv-cli": "^7.4.2",
     "happy-dom": "^14.12.0",
@@ -64,10 +64,10 @@
     "initVersion": "7.34.0"
   },
   "packageManager": "pnpm@9.1.1",
-  "prettier": "@utter-todo/prettier",
+  "prettier": "@automata-todo/prettier",
   "eslintConfig": {
     "extends": [
-      "@utter-todo/eslint-config/next",
+      "@automata-todo/eslint-config/next",
       "plugin:@next/next/recommended"
     ]
   }
