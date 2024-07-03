@@ -24,7 +24,7 @@ variable "gh_app_repo" {
 
 variable "db_name" {
   description = "The name of the database"
-  default     = "utter_todo"
+  default     = "automata_todo"
   type        = string
 }
 

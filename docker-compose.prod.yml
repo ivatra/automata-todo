@@ -1,0 +1,55 @@
+version: '3.8'
+
+services:
+  db:
+    container_name: automata-todo-db-prod
+    image: bitnami/postgresql:latest
+    restart: unless-stopped
+    environment:
+      - POSTGRESQL_PASSWORD=${DB_PASSWORD}
+      - POSTGRESQL_USER=postgres
+      - POSTGRESQL_DATABASE=automata_todo
+    volumes:
+      - db-data:/bitnami/postgresql
+    networks:
+      - automata-todo-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  api:
+    container_name: automata-todo-api-prod
+    build:
+      context: .
+      dockerfile: Dockerfile.api
+    restart: unless-stopped
+    environment:
+      - NODE_ENV=production
+      - PORT=4000
+      - DATABASE_URL=postgresql://postgres:${DB_PASSWORD}@db:5432/automata_todo
+      - DB_URL=postgresql://postgres:${DB_PASSWORD}@db:5432/automata_todo
+      - DB_TEST_URL=postgresql://postgres:${DB_PASSWORD}@db:5432/automata_todo_test
+      - JWT_SECRET=${JWT_SECRET}
+    ports:
+      - "4000:4000"
+    depends_on:
+      db:
+        condition: service_healthy
+    networks:
+      - automata-todo-network
+    healthcheck:
+      test: ["CMD", "node", "-e", "require('http').get('http://localhost:4000/health', (r) => process.exit(r.statusCode === 200 ? 0 : 1))"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+networks:
+  automata-todo-network:
+    driver: bridge
+
+volumes:
+  db-data:
+    driver: local

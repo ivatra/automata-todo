@@ -1,5 +1,5 @@
 {
-  "name": "@utter-todo/eslint-config",
+  "name": "@automata-todo/eslint-config",
   "version": "0.0.1",
   "private": true,
   "files": [
@@ -8,7 +8,7 @@
     "node.js"
   ],
   "devDependencies": {
-    "@utter-todo/prettier": "workspace:*",
+    "@automata-todo/prettier": "workspace:*",
     "@rocketseat/eslint-config": "^2.2.2",
     "eslint-plugin-simple-import-sort": "^12.1.0"
   },

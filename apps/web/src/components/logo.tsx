@@ -28,7 +28,7 @@ const Logo = React.forwardRef<HTMLDivElement, LogoProps>(
     return (
       <h1 ref={ref} {...props} className={logoVariants({ className, size })}>
         <ListTodo size={size === 'sm' ? 24 : 32} />
-        Utter Todo
+        AutomataTodo
       </h1>
     )
   },

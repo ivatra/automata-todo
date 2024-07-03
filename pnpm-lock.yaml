@@ -84,13 +84,13 @@ importers:
       '@types/supertest':
         specifier: ^6.0.0
         version: 6.0.2
-      '@utter-todo/eslint-config':
+      '@automata-todo/eslint-config':
         specifier: workspace:*
         version: link:../../config/eslint-config
-      '@utter-todo/prettier':
+      '@automata-todo/prettier':
         specifier: workspace:*
         version: link:../../config/prettier
-      '@utter-todo/typescript-config':
+      '@automata-todo/typescript-config':
         specifier: workspace:*
         version: link:../../config/typescript-config
       dotenv:
@@ -223,13 +223,13 @@ importers:
       '@types/react-dom':
         specifier: ^18.2.19
         version: 18.3.0
-      '@utter-todo/eslint-config':
+      '@automata-todo/eslint-config':
         specifier: workspace:*
         version: link:../../config/eslint-config
-      '@utter-todo/prettier':
+      '@automata-todo/prettier':
         specifier: workspace:*
         version: link:../../config/prettier
-      '@utter-todo/typescript-config':
+      '@automata-todo/typescript-config':
         specifier: workspace:*
         version: link:../../config/typescript-config
       '@vitejs/plugin-react':
@@ -265,7 +265,7 @@ importers:
       '@rocketseat/eslint-config':
         specifier: ^2.2.2
         version: 2.2.2(@types/eslint@8.56.10)(eslint@8.57.0)(typescript@5.4.5)
-      '@utter-todo/prettier':
+      '@automata-todo/prettier':
         specifier: workspace:*
         version: link:../prettier
       eslint-plugin-simple-import-sort:

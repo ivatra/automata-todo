@@ -8,5 +8,5 @@ app
   })
   .then(() => {
     console.log('')
-    console.log('🤘 Utter Todo API running!')
+    console.log('🤘 AutomataTodo API running!')
   })

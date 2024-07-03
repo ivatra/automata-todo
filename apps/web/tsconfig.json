@@ -1,5 +1,5 @@
 {
-  "extends": "@utter-todo/typescript-config/next.json",
+  "extends": "@automata-todo/typescript-config/next.json",
   "include": [
     "src",
     "next.config.js",

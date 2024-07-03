@@ -7,7 +7,7 @@ export default function LoginPage() {
       <div className="mx-4 flex flex-col items-center justify-center gap-10 rounded-lg bg-card p-8 text-center shadow-lg">
         <Logo />
         <p className="text-lg text-muted-foreground">
-          <strong>Welcome to Utter Todo!</strong>
+          <strong>Welcome to AutomataTodo!</strong>
           <br />
           To manage your tasks, you need to sign in.
         </p>
